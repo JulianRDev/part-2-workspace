@@ -99,16 +99,8 @@ public class CatalogTest {
   @Test
   public void testSortByVolume() {
     List<Television> tvs = new ArrayList<>(Catalog.getInventory());
-    // anonymous class
-    tvs.sort((tv1, tv2) -> {
-//        if (tv1.getVolume() < tv2.getVolume()){
-//          return -1;
-//        } else if (tv1.getVolume() > tv2.getVolume()) {
-//          return 1;
-//        }
-//        return 0;
-      return Integer.compare(tv1.getVolume(),tv2.getVolume());
-    });
+    // sort uses a comparator
+    tvs.sort(Comparator.comparingInt(Television::getVolume).reversed());
     System.out.println(tvs);
   }
 }
